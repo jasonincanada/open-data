@@ -24,5 +24,5 @@ This project explores the open data sets at https://open.canada.ca/en/open-data,
 
 ## Mind map
 
-![mind map](images/mind-map.png)
+![mind map](https://raw.githubusercontent.com/jasonincanada/open-data/main/images/mind-map.png)
 
