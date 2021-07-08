@@ -9,6 +9,7 @@
 #    -w   sets the working directory to /data where the resources were downloaded to
 # 
 
+~/open-data/set/wildlife-incidents$ docker build -t wildlife:latest .
 ~/open-data/set/wildlife-incidents$ docker run --rm -it -w /data wildlife:latest ash
 
 /data # ls -l
