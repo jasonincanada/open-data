@@ -1,5 +1,5 @@
 
-# start with our custom-designed .csv-processing container (alpine + xsv)
+# start with our custom-designed .csv-processing image (alpine + xsv)
 FROM xsv:latest
 
 WORKDIR /data
