@@ -1,6 +1,6 @@
 # build an xsv container for processing .csv files
 
-FROM alpine:3.14
+FROM alpine:3.14 AS install
 
 RUN apk add --no-cache wget
 
@@ -9,12 +9,13 @@ WORKDIR /xsv
 # download the xsv binary
 RUN wget https://github.com/BurntSushi/xsv/releases/download/0.13.0/xsv-0.13.0-x86_64-unknown-linux-musl.tar.gz
 
-# extract the binary and remove the download
+# extract the binary
 RUN tar zxvf xsv-0.13.0-x86_64-unknown-linux-musl.tar.gz
-RUN rm       xsv-0.13.0-x86_64-unknown-linux-musl.tar.gz
 
-# move the xsv binary into the PATH
-RUN mv xsv /bin
+# move the xsv binary onto a fresh alpine image (without wget and the downloaded binary)
+FROM alpine:3.14
+
+COPY --from=install /xsv/xsv /bin
 
 
 #   ~/open-data/xsv$ docker build -t xsv:latest .
