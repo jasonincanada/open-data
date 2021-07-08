@@ -12,7 +12,7 @@ RUN wget https://github.com/BurntSushi/xsv/releases/download/0.13.0/xsv-0.13.0-x
 # extract the binary
 RUN tar zxvf xsv-0.13.0-x86_64-unknown-linux-musl.tar.gz
 
-# move the xsv binary onto a fresh alpine image (without wget and the downloaded binary)
+# move the xsv binary onto a fresh alpine image (without wget and the downloaded archive)
 FROM alpine:3.14
 
 COPY --from=install /xsv/xsv /bin
