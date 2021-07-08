@@ -1,0 +1,53 @@
+
+# the Dockerfile's ADD commands copied some resource files from the portal to the
+# wildlife container
+#
+# let's spin up the wildlife container with:
+#
+#   --rm  removes the container after we exit the session
+#    -it  hooks up stdin and stdout so we can type into the container and see the results
+#    -w   sets the working directory to /data where the resources were downloaded to
+# 
+
+~/open-data/set/wildlife-incidents$ docker run --rm -it -w /data wildlife:latest ash
+
+/data # ls -l
+total 3860
+-rw-------    1 root     root       3789437 Jun 16 23:05 detailed.csv
+-rw-------    1 root     root        149898 Jun 16 23:00 dictionary.csv
+-rw-------    1 root     root          4424 Jul 28  2020 headers.csv
+
+/data # xsv headers detailed.csv
+1   Incident Number
+2   Incident Date
+3   Local Time
+4   Field Unit
+5   Protected Heritage Area
+6   Incident Type
+7   Total Staff Involved
+8   Total Staff Hours
+
+/data # xsv count detailed.csv
+28270
+
+/data # xsv stats detailed.csv | xsv table
+field                    type     sum        min                            max                                            min_length  max_length  mean   stddev
+Incident Number          Unicode             2017-HWC-0005-YKLLFU-0001      2021-HWC-1013-NPRFU-0018                       16          26
+Incident Date            Unicode             2017-01-01                     2020-12-31                                     10          10
+Local Time               Unicode             0:00:00                        9:59:53                                        7           8
+Field Unit               Unicode             Banff Field Unit               Yukon Field Unit                               16          44
+Protected Heritage Area  Unicode             Banff National Park of Canada  York Factory National Historic Site of Canada  25          61
+Incident Type            Unicode             Attractant                     Wildlife Sighting                              10          32
+Total Staff Involved     Integer  41264      1                              24                                             1           2           1.459  0.970
+Total Staff Hours        Float    60960.810  0                              783.25                                         4           6           2.156  9.293
+
+/data # xsv sample 5 detailed.csv | xsv table
+Incident Number           Incident Date  Local Time  Field Unit                               Protected Heritage Area                       Incident Type                     Total Staff Involved  Total Staff Hours
+2017-HWC-PEIFU-0004       2017-05-24     9:44:00     Prince Edward Island Field Unit          Prince Edward Island National Park of Canada  Rescued/Recovered/Found Wildlife  2                     0.25
+2018-HWC-BANFU-0853       2018-07-25     8:44:57     Banff Field Unit                         Banff National Park of Canada                 Human Wildlife Interaction        1                     0.50
+2021-HWC-0860-NPRFU-0015  2020-07-09     11:15:00    Northern Prairies Field Unit             Elk Island National Park of Canada            Harassment                        2                     1.08
+2018-HWC-JASFU-1801       2018-10-04     19:05:04    Jasper Field Unit                        Jasper National Park of Canada                Human Wildlife Interaction        1                     0.25
+2018-HWC-MRGFU-0099       2018-07-17     15:04:57    Mount Revelstoke and Glacier Field Unit  Glacier National Park of Canada               Wildlife Sighting                 2                     1.25
+
+/data # exit
+
