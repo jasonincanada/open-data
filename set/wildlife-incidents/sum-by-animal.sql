@@ -1,5 +1,3 @@
--- Total number of reported animals grouped by species name
-
 SELECT "Species Common Name" AS Species,
        SUM("Sum of Number of Animals") AS Total
 
