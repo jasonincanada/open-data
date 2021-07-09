@@ -1,12 +1,11 @@
 #!/bin/bash
 #
-# this script produces the exact same resulting chart as Dockerfile.plot
-# but using the docker command-line utility only, not a multi-stage build
+#  this script produces the exact same resulting chart as Dockerfile.plot
+#  but using the docker command-line utility only, not a multi-stage build
 #
+#  pre-reqs:
 #
-# pre-reqs:
-#
-#   ~/open-data/q$ docker build -t q:latest .
+#    ~/open-data/q$ docker build -t q:latest .
 # 
 
 # details of all human/wildlife interactions involving animals
