@@ -25,6 +25,9 @@ docker run --rm -v "$PWD/trough":/data q:latest \
      -e iso-8859-1                              \
      -q sum-by-animal.sql > trough/sum-by-animal.csv
 
+# echo our results to screen
+cat trough/sum-by-animal.csv
+
 
 # copy our gnuplot script
 cp sum-by-animal.gnuplot trough/
