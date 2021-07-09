@@ -18,16 +18,6 @@ total 3860
 -rw-------    1 root     root        149898 Jun 16 23:00 dictionary.csv
 -rw-------    1 root     root          4424 Jul 28  2020 headers.csv
 
-/data # xsv headers detailed.csv
-1   Incident Number
-2   Incident Date
-3   Local Time
-4   Field Unit
-5   Protected Heritage Area
-6   Incident Type
-7   Total Staff Involved
-8   Total Staff Hours
-
 /data # xsv count detailed.csv
 28270
 
