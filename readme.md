@@ -9,8 +9,8 @@ This project explores the open data sets at https://open.canada.ca/en/open-data,
 	- [ ] Multi-stage docker builds
 		- [x] pull `.csv` file from open.canada.ca
 		- [x] arbitrary SQL processing with [q](http://harelba.github.io/q/)
-		- [ ] render a graph with [gnuplot](http://www.gnuplot.info/)
-		- [ ] copy to nginx image for local rendering as web page
+		- [x] render a graph with [gnuplot](http://www.gnuplot.info/)
+		- [x] copy to nginx image for local rendering as web page
 	- [ ] Haskell DSL and monad that describe the above
 		- [ ] generates `Dockerfile` with multi-stage build
 - [ ] Find hidden information
