@@ -1,6 +1,6 @@
 
 # the Dockerfile's ADD commands copied some resource files from the portal to the
-# wildlife container
+# wildlife image
 #
 # let's spin up the wildlife container with:
 #
