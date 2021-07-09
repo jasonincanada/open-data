@@ -19,7 +19,7 @@ wget --no-clobber -O trough/$FILE $RESOURCE
 cp sum-by-animal.sql trough/
 
 # run the q container with our SQL query on the local .csv
-docker run --rm -v "$PWD"/trough:/data q:latest \
+docker run --rm -v "$PWD/trough":/data q:latest \
   q --delimiter=,                               \
     --skip-header --output-header               \
      -e iso-8859-1                              \
@@ -30,7 +30,7 @@ docker run --rm -v "$PWD"/trough:/data q:latest \
 cp sum-by-animal.gnuplot trough/
 
 # run someone's alpine+gnuplot image on the result of the SQL query
-docker run --rm -v "$PWD"/trough:/work remuslazar/gnuplot \
+docker run --rm -v "$PWD/trough":/work remuslazar/gnuplot \
   sum-by-animal.gnuplot
 
 
@@ -39,7 +39,7 @@ docker run --rm -v "$PWD"/trough:/work remuslazar/gnuplot \
 # launch an nginx container on port 8000 to view it in a browser (or just
 # uncomment the next line and it'll launch again every time you run this)
 #
-#    docker run --rm -v "$PWD"/trough:/usr/share/nginx/html -p 8000:80 nginx:latest
+#    docker run --rm -v "$PWD/trough":/usr/share/nginx/html -p 8000:80 nginx:latest
 
 # url should be something like:  http://192.168.0.16:8000/sum-by-animal.png
 #
