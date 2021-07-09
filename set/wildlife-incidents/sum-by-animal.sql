@@ -6,5 +6,5 @@ FROM animals.csv
 GROUP BY "Species Common Name"
 ORDER BY SUM("Sum of Number of Animals") DESC
 
-LIMIT 10
+LIMIT 5
 
