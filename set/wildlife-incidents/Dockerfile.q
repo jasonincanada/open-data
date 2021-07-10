@@ -5,7 +5,7 @@ FROM q:latest
 # download details of all incidents involving animals
 RUN wget -O /data/animals.csv https://open.canada.ca/data/dataset/743a0b4a-9e33-4b12-981a-9f9fd3dd1680/resource/d6892a77-5e2f-407e-80ee-3b76466a4d80/download/pca-human-wildlife-coexistence-animals-involved-detailed-records.csv
 
-# copy our sql query into the container
+# copy our sql query into the image
 COPY sum-by-animal.sql .
 
 # always run q with these params

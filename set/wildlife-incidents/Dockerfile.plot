@@ -11,7 +11,7 @@ FROM q:latest AS csv
 # download details of all human/wildlife interactions involving animals
 RUN wget -O /data/animals.csv https://open.canada.ca/data/dataset/743a0b4a-9e33-4b12-981a-9f9fd3dd1680/resource/d6892a77-5e2f-407e-80ee-3b76466a4d80/download/pca-human-wildlife-coexistence-animals-involved-detailed-records.csv
 
-# copy our sql query into the container
+# copy our sql query into the image
 COPY sum-by-animal.sql .
 
 RUN q --delimiter=, --skip-header -e iso-8859-1 --output-header -q sum-by-animal.sql > /data/sum-by-animal.csv
@@ -23,7 +23,7 @@ FROM remuslazar/gnuplot AS plot
 # copy our gnuplot script
 COPY sum-by-animal.gnuplot /work
 
-# retrieve the results of our SQL query from the previous container
+# retrieve the results of our SQL query from the previous image
 COPY --from=csv /data/sum-by-animal.csv /work
 
 RUN gnuplot sum-by-animal.gnuplot
