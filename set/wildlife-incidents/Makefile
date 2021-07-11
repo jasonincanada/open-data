@@ -6,7 +6,8 @@
 #
 #  pre-reqs:
 #
-#    ~/open-data/q$ docker build -t q:latest .
+#    ~/open-data/q  $ docker build -t q:latest .
+#    ~/open-data/xsv$ docker build -t xsv:latest .
 # 
 
 # details of all human/wildlife interactions involving animals
@@ -41,8 +42,9 @@ trough/sum-by-animal.csv: trough/$(file) sum-by-animal.sql
 			 -e iso-8859-1																\
 			 -q sum-by-animal.sql > trough/sum-by-animal.csv
 
-	# echo our results to screen
-	cat trough/sum-by-animal.csv
+	# echo our results to screen in tabular format
+	docker run --rm -v "$(PWD)/trough":/data xsv:latest \
+		xsv table /data/sum-by-animal.csv
 
 	rm trough/sum-by-animal.sql
 
