@@ -4,11 +4,6 @@
 #  build the main chart with:  make chart
 #  launch a web server with:   make web
 #
-#  pre-reqs:
-#
-#    ~/open-data/q  $ docker build -t q:latest .
-#    ~/open-data/xsv$ docker build -t xsv:latest .
-# 
 
 # details of all human/wildlife interactions involving animals
 resource = https://open.canada.ca/data/dataset/743a0b4a-9e33-4b12-981a-9f9fd3dd1680/resource/d6892a77-5e2f-407e-80ee-3b76466a4d80/download/pca-human-wildlife-coexistence-animals-involved-detailed-records.csv
@@ -30,7 +25,7 @@ trough/sum-by-animal.png: trough/sum-by-animal.csv sum-by-animal.gnuplot
 	rm trough/sum-by-animal.gnuplot
 
 
-trough/sum-by-animal.csv: trough/$(file) sum-by-animal.sql
+trough/sum-by-animal.csv: trough/$(file) sum-by-animal.sql q.docker xsv.docker
 
 	# copy our sql query into the trough
 	cp sum-by-animal.sql trough/
@@ -53,6 +48,17 @@ trough/$(file):
 	
 	# download resource locally and rename it to something shorter
 	wget -O trough/$(file) $(resource)
+
+
+# build our required docker images and remember we did by dropping a file
+
+q.docker:
+	cd ~/open-data/q && docker build -t q:latest .
+	touch q.docker
+
+xsv.docker:
+	cd ~/open-data/xsv && docker build -t xsv:latest .
+	touch xsv.docker
 
 
 # load an nginx container on port 8000 to browse the trough
