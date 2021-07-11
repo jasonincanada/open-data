@@ -61,6 +61,14 @@ xsv.docker:
 	touch xsv.docker
 
 
+clean:
+	rm -f trough/animals.csv
+	rm -f trough/sum-by-animal.csv
+	rm -f trough/sum-by-animal.png
+	rm -f q.docker
+	rm -f xsv.docker
+
+
 # load an nginx container on port 8000 to browse the trough
 web:
 	docker run --rm -v "$(PWD)/trough":/usr/share/nginx/html -p 8000:80 nginx:latest
