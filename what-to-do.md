@@ -24,5 +24,5 @@ This build process should result in [this chart](set/wildlife-incidents/trough/s
 
 Also check out the [Dockerfile.plot](set/wildlife-incidents/Dockerfile.plot) file for the equivalent chart built using a [multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/) and no leftover artifacts other than the final `sum-by-animal.png` chart and an nginx install to serve it
 
-The same chart can be built in yet a third way with a bash script [go-trough.sh](go-trough.sh)
+The same chart can be built in yet a third way with a bash script [go-trough.sh](set/wildlife-incidents/go-trough.sh)
 
